@@ -1,0 +1,40 @@
+# ── Environment ──────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Python ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# ── Uploads ──────────────────────────────────────────────────────────────
+uploaded_cvs/
+*.pdf
+
+# ── Node / Next.js ───────────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.vercel/
+
+# ── IDE ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ── Build artifacts ───────────────────────────────────────────────────────
+_build.py
+_check.py
+_write_remaining.py
