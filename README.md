@@ -1,98 +1,36 @@
-# career_agent — AI Career & Skills Advisor
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-> Multi-Provider ReAct Agent | 4-Tier Failover: Gemini → Groq → NVIDIA → Ollama
+## Getting Started
 
-[![HF Space](https://img.shields.io/badge/HuggingFace-Space-orange)](https://huggingface.co/spaces/MuhammadBurhan/career-agent-backend)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-## What It Does
-
-career_agent analyzes your skills (CV upload or text input) and delivers a
-**360-degree career strategy** across 4 pillars:
-
-| Pillar | Output |
-|--------|--------|
-| 🎯 Job Roles | Exact high-paying titles matching your stack |
-| 💼 Freelancing | Upwork/Fiverr gig titles + B2B outreach services |
-| 🚀 SaaS Ideas | Micro-SaaS and automation business concepts |
-| 📈 Skill Gaps | Top 2 missing skills to 2x your income |
-
-## Project Structure
-
-```
-career_agent/          Core ReAct agent (LLM cascade, tools, PDF parser)
-backend/               FastAPI REST API (rate limiting, CORS, auth)
-hf_space/              Hugging Face Spaces deployment (Gradio, free tier)
-BACKEND_SPEC.md        API specification
-DESIGN.md              Frontend design spec (Next.js / v0.dev)
-```
-
-## Quick Start (Local)
+First, run the development server:
 
 ```bash
-# 1. Clone
-git clone https://github.com/YOUR_USERNAME/career-agent
-cd career-agent
-
-# 2. Create venv with uv
-uv venv .venv
-.venv\Scripts\activate   # Windows
-
-# 3. Install dependencies
-uv pip install -r requirements.txt
-
-# 4. Configure keys
-cp .env.example .env
-# Edit .env and fill in GEMINI_API_KEY, GROQ_API_KEY
-
-# 5a. Run CLI agent
-cd career_agent && python main.py
-
-# 5b. Run FastAPI backend
-uvicorn backend.main:app --reload --port 8000
-# Swagger: http://localhost:8000/docs
-
-# 5c. Run Gradio (HF Space locally)
-cd hf_space && python app.py
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Environment Variables
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GEMINI_API_KEY` | ✅ | Google Gemini (Tier 1) |
-| `GROQ_API_KEY` | ✅ | Groq — GPT-OSS 120B / Qwen 27B / GPT-OSS 20B |
-| `NVIDIA_API_KEY` | ⚠️ Optional | NVIDIA NIM (Tier 3) |
-| `OLLAMA_BASE_URL` | ⚠️ Optional | Local Ollama (Tier 4 emergency) |
-| `ALLOWED_ORIGINS` | ⚠️ Optional | CORS origin (default: `*`) |
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Model Cascade
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-| Tier | Model | Provider | Tools |
-|------|-------|----------|-------|
-| 1 | Gemini 3.6 Flash | Google | ✅ |
-| 2A | GPT-OSS 120B | Groq | ✅ |
-| 2B | Qwen 3.8 27B | Groq | ✅ |
-| 2C | GPT-OSS 20B | Groq | ✅ |
-| 3 | Llama 3.3 70B | NVIDIA NIM | ✅ |
-| 4 | Gemma 4B | Ollama (local) | ❌ |
+## Learn More
 
-## Deploy
+To learn more about Next.js, take a look at the following resources:
 
-### Hugging Face Spaces (Free)
-```bash
-git clone https://huggingface.co/spaces/MuhammadBurhan/career-agent-backend
-cp -r hf_space/* career-agent-backend/
-cd career-agent-backend
-git add . && git commit -m "deploy" && git push
-```
-Add secrets in Space Settings → Variables and Secrets.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Frontend (Vercel + Next.js)
-See [DESIGN.md](DESIGN.md) — paste the v0.dev prompt to generate the UI,
-then `vercel deploy`.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## License
+## Deploy on Vercel
 
-MIT © MuhammadBurhan
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
