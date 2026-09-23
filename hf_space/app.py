@@ -16,6 +16,9 @@ import os
 import sys
 import tempfile
 
+# Force disable Gradio 6 SSR (Node.js Proxy) which crashes on Hugging Face free tier
+os.environ["GRADIO_SSR_MODE"] = "False"
+
 import gradio as gr
 from dotenv import load_dotenv
 
@@ -295,6 +298,12 @@ QUICK_ACTIONS = [
 # ── GRADIO UI ─────────────────────────────────────────────────────────────────
 with gr.Blocks(
     title="career_agent — AI Career Advisor",
+    css=CSS,
+    theme=gr.themes.Base(
+        primary_hue="indigo",
+        neutral_hue="zinc",
+        font=[gr.themes.GoogleFont("Inter")],
+    ),
 ) as demo:
 
     # ── Header ────────────────────────────────────────────────────────────────
@@ -512,15 +521,4 @@ Go to **Settings → Variables and Secrets** and add:
 
 
 # ── Launch ────────────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    demo.launch(
-        server_name="0.0.0.0",
-        server_port=int(os.environ.get("PORT", 7860)),
-        show_error=True,
-        css=CSS,
-        theme=gr.themes.Base(
-            primary_hue="indigo",
-            neutral_hue="zinc",
-            font=[gr.themes.GoogleFont("Inter")],
-        ),
-    )
+demo.launch(server_name="0.0.0.0", server_port=7860)
